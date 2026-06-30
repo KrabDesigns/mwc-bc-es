@@ -17,11 +17,11 @@ body { font-family: 'Montserrat', sans-serif; background: #f0f0f0; color: #dde1e
 .header p { font-size: 10px; font-weight: 600; letter-spacing: 0.18em; color: #00B68D; text-transform: uppercase; margin-top: 6px; }
 .header-bar { width: 48px; height: 2px; background: linear-gradient(90deg,#00b68d,#2e5dab); border-radius: 2px; margin: 14px auto 0; }
 .layout { display: flex; gap: 36px; max-width: 1100px; margin: 0 auto; align-items: flex-start; }
-.form-panel { flex: 0 0 320px; background: #e7e7e7; border: 1px solid #1e2232; border-radius: 16px; padding: 28px 24px 24px; }
+.form-panel { flex: 0 0 380px; background: #e7e7e7; border: 1px solid #1e2232; border-radius: 16px; padding: 28px 24px 24px; }
 .form-panel h2 { font-size: 10px; font-weight: 700; letter-spacing: 0.18em; color: #00b68d; text-transform: uppercase; margin-bottom: 22px; }
 .field { margin-bottom: 16px; }
 .field label { display: block; font-size: 9.5px; font-weight: 600; letter-spacing: 0.14em; color: #636882; text-transform: uppercase; margin-bottom: 7px; }
-.field input, .field textarea { width: 100%; background: #e2e2e2; border: 1px solid #1e2232; border-radius: 7px; color: #dde1ed; font-family: 'Montserrat', sans-serif; font-size: 12.5px; font-weight: 400; padding: 10px 13px; transition: border-color 0.18s; outline: none; resize: none; }
+.field input, .field select { width: 100%; background: #f0f0f0; border: 1px solid #1e2232; border-radius: 7px; color: #1a1a1a; font-family: 'Montserrat', sans-serif; font-size: 12.5px; font-weight: 400; padding: 12px 25px 12px 12px; transition: border-color 0.18s; outline: none; resize: none; }
 .field input:focus, .field textarea:focus { border-color: #00b68d; }
 .field input::placeholder, .field textarea::placeholder { color: #6e7179; }
 .field textarea { height: 76px; line-height: 1.55; }
@@ -46,18 +46,23 @@ body { font-family: 'Montserrat', sans-serif; background: #f0f0f0; color: #dde1e
 </head>
 <body>
 <div class="header">
-  <h1>Business Card App</h1>
+  <h1>MWC Business Card App</h1>
   <p>MetaWorld Consultant &mdash; Print-Ready PDF</p>
   <div class="header-bar"></div>
 </div>
 <div class="layout">
   <div class="form-panel">
     <h2>Card Details</h2>
-    <div class="field"><label>Full Name</label><input type="text" id="f-name" placeholder="e.g. Shahzaib Zahid" oninput="liveUpdate()"></div>
-    <div class="field"><label>Designation</label><input type="text" id="f-desig" placeholder="e.g. Graphic Designer" oninput="liveUpdate()"></div>
-    <div class="field"><label>Phone Number</label><input type="text" id="f-phone" placeholder="e.g. +92 316 1234567" oninput="liveUpdate()"></div>
+    <div class="field"><label>Full Name</label><input type="text" id="f-name" placeholder="e.g. Abid Khattak" oninput="liveUpdate()"></div>
+    <div class="field"><label>Designation</label><input type="text" id="f-desig" placeholder="e.g. Legal Associate" oninput="liveUpdate()"></div>
+    <div class="field"><label>Phone Number</label><input type="text" id="f-phone" placeholder="e.g. +92 333 4141184" oninput="liveUpdate()"></div>
     <div class="field"><label>Email Address</label><input type="text" id="f-email" placeholder="e.g. name@metaworldconsultant.com" oninput="liveUpdate()"></div>
-    <div class="field"><label>Office Address</label><textarea id="f-addr" placeholder="e.g. M3, Mezzanine Floor, Dossal Arcade, Jinnah Avenue, Blue Area, Islamabad, Pakistan" oninput="liveUpdate()"></textarea></div>
+    <div class="field"><label>Office Address</label><select id="f-addr" oninput="liveUpdate()">
+      <option value="Office 101, SOL Bay, Al Khaleej Al Tejari 2 St Business Bay - Dubai">Dubai Office</option>
+      <option value="Office No 8, Azam Line, Near Budni Bridge Charsadda Road, Peshawar KPK, Pakistan">Peshawar Office</option>
+      <option value="M3, Mezzanine Floor, Dossal Arcade, Jinnah Avenue, Blue Area, Islamabad, Pakistan">Islamabad Office</option>
+    </select>
+    </div>
     <button class="btn" id="btnGen" onclick="generatePDF()">&#8595;&nbsp; Download PDF</button>
     <div id="status"></div>
     <p class="note">2-page PDF &bull; 88.9&times;50.8 mm &bull; 300 DPI &bull; Montserrat</p>
@@ -3108,7 +3113,7 @@ const BACK_TMPL  = `<?xml version="1.0" encoding="UTF-8"?>
 
       .b-cls-6 {
         font-family: Montserrat-Light, Montserrat;
-        font-size: 6.29px;
+        font-size: 6.15px;
       }
 
       .b-cls-6, .b-cls-7 {
@@ -3291,7 +3296,7 @@ function measureSVGUnits(text) {
 //   Blue solid shape left edge at address y ≈ x = 254
 //   Text starts at x = 41.85
 //   Conservative safe right edge: x = 190  →  maxWidth = 190 - 41.85 = 148 SVG units
-var ADDR_MAX_WIDTH = 145;
+var ADDR_MAX_WIDTH = 150;
 
 // Generic wrapper: breaks on whitespace first; any "word" (e.g. a long
 // email address with no spaces) that is still wider than maxWidth on its
@@ -3350,7 +3355,7 @@ function wrapAddress(text) {
 // Email uses the same safe-zone width as the address, but only has room
 // for 2 lines before it would collide with the address line below it.
 function wrapEmail(text) {
-  return wrapToWidth(text, 138, 2);
+  return wrapToWidth(text, 135, 2);
 }
 
 // ---- Build back SVG from user data ----
