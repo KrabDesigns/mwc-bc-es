@@ -33,8 +33,8 @@ body { font-family: 'Montserrat', sans-serif; background: #f0f0f0; color: #dde1e
 .btn-link:hover { opacity: 0.88; }
 .btn-link:active { transform: scale(0.98); }
 .btn-link:disabled { opacity: 0.45; cursor: not-allowed; transform: none; }
-.btn-link a:link { color: #fff; text-decoration: none; }
-.btn-link a:visited { color: #fff; }
+ a:link { color: #fff; text-decoration: none; }
+ a:visited { color: #fff; }
 .note { font-size: 9.5px; color: #373d56; text-align: center; margin-top: 12px; line-height: 1.7; }
 #status { font-size: 10.5px; font-weight: 500; letter-spacing: 0.06em; padding: 9px 12px; border-radius: 6px; margin-top: 10px; display: none; }
 #status.show { display: block; }
@@ -70,7 +70,11 @@ body { font-family: 'Montserrat', sans-serif; background: #f0f0f0; color: #dde1e
     </select>
     </div>
     <button class="btn" id="btnGen" onclick="generatePDF()">&#8595;&nbsp; Download PDF</button>
-    <div class="btn-link"><a href="/mwc-bc-es">&#8592;&nbsp; Go Back</a></div>
+    <a href="/mwc-bc-es">
+      <div class="btn-link">
+        &#8592;&nbsp; Go Back
+      </div>
+    </a>
     <div id="status"></div>
     <p class="note">2-page PDF &bull; 88.9&times;50.8 mm &bull; 300 DPI &bull; Montserrat</p>
   </div>
